@@ -1,27 +1,34 @@
-const mongoose = require('../models/reporte');
+/**
+ * Report Management Controller
+ * Layer: logic
+ */
 
-//Get all reports
-//req = request body {} params url?param1=datos123.
+// FIX: Importing the Report model correctly (Data Layer)
+const Reporte = require('../models/Reportes');
+
+// GET: Retrieve all urban reports from MongoDB
 exports.getReportes = async (req, res) => {
     try {
         const reportes = await Reporte.find();
         res.json(reportes);
     } catch (error) {
-        //Error general
-        res.status(500).json({error: "Error: Get Reports", message: error})
+        res.status(500).json({ error: "Error: Get Reports failed", message: error.message });
     }
 };
 
+// POST: Business logic to create and prioritize reports
 exports.createReportes = async (req, res) => {
     try {
-        const {titulo, descripcion, ubicacion} = req.body;
+        const { titulo, descripcion, ubicacion } = req.body;
 
-        // Logic
+        // BUSINESS LOGIC: Automated Priority System
+        // If keywords are found, the system automatically escalates the priority to "alta"
         let prioridad = "media";
         if (descripcion.toLowerCase().includes('fuego') || descripcion.toLowerCase().includes('incendio')){
-            prioridad = "alta"
+            prioridad = "alta";
         }
 
+        // Creating the new instance (using the Data Layer Schema)
         const nuevoReporte = new Reporte({
             titulo,
             descripcion,
@@ -29,10 +36,10 @@ exports.createReportes = async (req, res) => {
             prioridad
         });
 
+        // Saving to the database
         await nuevoReporte.save();
-        res.status(201).json(nuevoReporte); //carga exitosa
+        res.status(201).json(nuevoReporte); 
     } catch (error) {
-        //Error de envio
-        res.status(400).json({error: "Error: Create reports", message: error})
+        res.status(400).json({ error: "Error: Create reports failed", message: error.message });
     }
 }
