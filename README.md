@@ -1,35 +1,57 @@
 # 🏙️ UrbanAlert API
 
-UrbanAlert is a platform designed for citizens to quickly report urban incidents (potholes, fires, leaks), enabling efficient management of reports through intelligent prioritization.
+UrbanAlert es una API REST diseñada para la gestión y reporte de incidencias urbanas. Permite a los usuarios reportar problemas (como incendios, baches o fallas eléctricas) y clasificarlos automáticamente por prioridad.
 
-## 🛠️ Technologies Used
+## 🚀 Tecnologías Utilizadas
 
-* **Node.js** & **Express** (Backend)
-* **MongoDB** & **Mongoose** (Database)
-* **JSON Web Token (JWT)** (Security)
-* **Bcryptjs** (Password Encryption)
+* **Node.js** - Entorno de ejecución.
+* **Express** - Framework para el servidor web.
+* **MongoDB Atlas** - Base de Datos NoSQL.
+* **Mongoose** - ODM para modelado de datos.
+* **JSON Web Tokens (JWT)** - Autenticación segura.
+* **Bcryptjs** - Encriptación de contraseñas.
 
-## 🚀 Installation Guide
+## 🛠️ Instalación y Configuración
 
-1. Clone the repository.
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone <url-de-tu-repo>
+    cd urban-alert-api
+    ```
 
-2. Install dependencies:
-   ```bash
-   npm install
+2.  **Instalar dependencias:**
+    ```bash
+    npm install
+    ```
 
-Set up your environment variables:
-Create a .env file based on .env.template
-Add your MONGO_URI and JWT_SECRET
+3.  **Configurar variables de entorno:**
+    * Renombra el archivo `.env.template` a `.env`.
+    * Completa las variables con tus credenciales (Mongo URI, JWT Secret, etc.).
 
-Start the server:Bashnode index.js
+4.  **Ejecutar el servidor:**
+    ```bash
+    # Modo desarrollo
+    node index.js
+    ```
 
-🛣️ Main Endpoints
-Authentication (/api/auth)
+## 🛣️ Endpoints Principales
 
-POST /register → Register new users
-POST /login → Login and obtain JWT Token
+### Autenticación (`/api/auth`)
+| Método | Endpoint | Descripción |
+| :--- | :--- | :--- |
+| POST | `/register` | Registra un nuevo usuario y encripta su contraseña. |
+| POST | `/login` | Autentica al usuario y devuelve un Token JWT. |
+| GET | `/getAllUsers` | Obtiene la lista de usuarios (Pruebas). |
 
-Reports (/api/reportes)
+### Reportes (`/api/reportes`)
+| Método | Endpoint | Descripción | Acceso |
+| :--- | :--- | :--- | :--- |
+| GET | `/getAllReports` | Obtiene todos los reportes ciudadanos. | Privado (JWT) |
+| POST | `/createReports` | Crea un reporte. Si incluye "fuego", la prioridad es "alta". | Privado (JWT) |
 
-GET /getAllReports → Get all reports (Requires Token)
-POST /createReports → Create a new report (Requires Token)
+## 📁 Estructura del Proyecto (N-Layer)
+- `src/config`: Conexión a bases de datos.
+- `src/controllers`: Lógica de las rutas.
+- `src/middlewares`: Protección de rutas y validación de tokens.
+- `src/models`: Esquemas de Mongoose.
+- `src/routes`: Definición de rutas Express.
