@@ -1,4 +1,4 @@
-//pa prender esta madre -- node index.js
+// Comando para iniciar: node index.js
 require('dotenv').config();//exportamos las variables de entorno
 const express = require('express');
 const connectDB = require('./src/config/databases');
@@ -33,4 +33,4 @@ app.listen(PORT, () => {
     console.log(`🚀 Servidor corriendo en: http://localhost:${PORT}`);
 });
 
-//pa prender esta madre -- node index.js
+// Comando para iniciar: node index.js
