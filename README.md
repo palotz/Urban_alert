@@ -33,7 +33,7 @@ UrbanAlert is a REST API designed for the management and reporting of urban inci
     node index.js
     ```
 
-## 🛣️ Endpoints Principales
+## Main ENDPOINTS
 
 ### Authentication (`/api/auth`).
 | Método | Endpoint | Descripción |
