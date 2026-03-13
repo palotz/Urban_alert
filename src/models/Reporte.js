@@ -1,35 +1,44 @@
-//capa de datos
+/**
+ * Report Model Schema
+ * Layer: Data
+ * * This file defines the structure of the "reports" collection in MongoDB.
+ * It ensures that every report submitted follows the same format.
+ */
 const mongoose = require('mongoose');
 
 const reportSchema = new mongoose.Schema({
-    titulo:{
+    titulo: {
         type: String,
-        require: true
-
+        required: true // FIX: Corrected from 'require' to 'required'
     },
-    descripcion:{
+    descripcion: {
         type: String,
-        require: true
+        required: true
     },
-    ubicacion:{  
+    ubicacion: {  
         type: String,
-        require: true
+        required: true
     },
-    prioridad:{
+    prioridad: {
         type: String,
-        enum:['baja','media','alta'],
+        // Enum restricts the values to these three options only
+        enum: ['baja', 'media', 'alta'],
         default: 'media'
-
     },
-    estado:{
+    estado: {
         type: String,
-        default:'abierto'
-
+        // Default status for new reports
+        default: 'abierto'
     },
-    fechaCreacion:{
+    fechaCreacion: {
         type: Date,
-        default: Date.now()
-
+        // Automatically captures the timestamp of the report
+        default: Date.now 
     },
-})//parentesis pq es una funcion
+});
+
+/**
+ * We export the model so the Controller (Logic Layer) can perform CRUD operations.
+ * It will be stored in the 'reportes' collection in MongoDB.
+ */
 module.exports = mongoose.model('Reporte', reportSchema);
