@@ -36,21 +36,26 @@ UrbanAlert is a REST API designed for the management and reporting of urban inci
 ## Main ENDPOINTS
 
 ### Authentication (`/api/auth`).
-| Método | Endpoint | Descripción |
+| Method | Endpoint |Description|
 | :--- | :--- | :--- |
 | POST | `/register` | Registers a new user and encrypts their password. |
 | POST | `/login` | Authenticates the user and returns a JWT Token. |
 | GET | `/getAllUsers` | Retrieves the list of users (Testing). |
 
 ### Reports (`/api/reportes`).
-| Método | Endpoint | Descripción | Acceso |
+| Method| Endpoint |Description|Access|
 | :--- | :--- | :--- | :--- |
 | GET | `/getAllReports` | Retrieves all citizen reports. | Private (JWT) |
 | POST | `/createReports` | Creates a report. If it includes "fire", priority is set to "high". | Private (JWT) |
 
 ## Project Structure.
-- `src/config`: Database connection logic.
-- `src/controllers`: Route logic and business rules.
-- `src/middlewares`: Route protection and token validation.
-- `src/models`: Mongoose schemas and data definitions.
-- `src/routes`: Express route definitions.
+Project Structure (N-Layer Architecture)
+
+To comply with best practices, the project is divided into 4 main layers:
+
+-`src/config (Config Layer)`: Database connection logic and environment settings.
+-`src/models (Data Layer)`: Mongoose schemas and data definitions.
+-`src/controllers (Logic Layer)`: Core business logic, prioritization, and request handling.
+-`src/routes (Network Layer)`: Express route definitions and endpoint mapping.
+-`src/middlewares`: Security layer for JWT validation.
+-`src/helpers`: Utility functions for token generation.
