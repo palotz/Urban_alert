@@ -15,7 +15,7 @@ UrbanAlert is a REST API designed for the management and reporting of urban inci
 
 1.  **Clone the repository:**
     ```bash
-    git clone <url-de-tu-repo>
+    git clone <your-repo-url>>
     cd urban-alert-api
     ```
 
