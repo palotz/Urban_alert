@@ -25,12 +25,11 @@ UrbanAlert es una API REST diseñada para la gestión y reporte de incidencias u
     ```
 
 3.  **Configurar variables de entorno:**
-    * Renombra el archivo `.env.template` a `.env`.
-    * Completa las variables con tus credenciales (Mongo URI, JWT Secret, etc.).
+    * Completa las variables con tus credenciales (Mongo URI, JWT Secret, etc.). en el archivo `.env`.
 
 4.  **Ejecutar el servidor:**
     ```bash
-    # Modo desarrollo
+    # Escribe en la terminal
     node index.js
     ```
 
